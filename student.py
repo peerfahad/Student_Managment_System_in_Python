@@ -86,8 +86,41 @@ class student:
       combo_search["values"]=("Roll No","Name","Contact")
       combo_search.grid(row=0,column=1,padx=20,pady=10)
 
-      txt_search=Entry(detail_frame,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
+      txt_search=Entry(detail_frame,width=20,font=("time new roman",10,"bold"),bd=5,relief=GROOVE)
       txt_search.grid(row=0,column=2,pady=10,padx=20,sticky="w")
+
+      searchbtn=Button(detail_frame,text="Search",width=10,pady=5).grid(row=0,column=3,padx=10,pady=10)
+      showallbtn=Button(detail_frame,text="Show all",width=10,pady=5).grid(row=0,column=4,padx=10,pady=10)
+
+      # Table frame
+      table_frame = Frame(detail_frame,bd=4,relief=RIDGE,bg="crimson")
+      table_frame.place(x=10,y=70,width=750,height=500)
+
+      scroll_x=Scrollbar(table_frame,orient=HORIZONTAL)
+      scroll_y=Scrollbar(table_frame,orient=VERTICAL)
+      student_table=ttk.Treeview(table_frame,columns=("roll","name","email","gender","contact","dob","address"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y)
+      scroll_x.pack(side=BOTTOM,fill=X)
+      scroll_y.pack(side=RIGHT,fill=Y)
+      scroll_x.config(command=student_table.xview)
+      scroll_y.config(command=student_table.yview)
+      student_table.heading("roll",text="Roll No.")
+      student_table.heading("name",text="name.")
+      student_table.heading("email",text="email.")
+      student_table.heading("gender",text="gender.")
+      student_table.heading("contact",text="contact.")
+      student_table.heading("dob",text="dob.")
+      student_table.heading("address",text="address.")
+      student_table["show"]="headings"
+      student_table.column("roll",width=100)
+      student_table.column("name",width=100)
+      student_table.column("email",width=100)
+      student_table.column("gender",width=100)
+      student_table.column("contact",width=100)
+      student_table.column("dob",width=100)
+      student_table.column("address",width=150)
+      
+      student_table.pack(fill=BOTH,expand=1)
+
 
 root=Tk()
 ob=student(root)
