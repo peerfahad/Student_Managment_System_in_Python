@@ -9,6 +9,16 @@ class student:
 
       title=Label(self.root,text="Student Managemnt System",bd=10,relief=GROOVE,font=("time new roman",40,"bold"),bg="yellow",fg="red")
       title.pack(side=TOP,fill=X)
+      # All Variables
+      self.roll_no_var=StringVar()
+      self.name_var=StringVar()
+      self.email_var=StringVar()
+      self.gender_var=StringVar()
+      self.contact_var=StringVar()
+      self.dob_var=StringVar()
+
+
+
 
       # Manage frame
 
