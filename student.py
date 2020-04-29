@@ -1,6 +1,7 @@
 from tkinter import*
 from PIL import ImageTk
 from tkinter import ttk
+import pymysql
 class student:
     def __init__(self,root):
       self.root=root
@@ -32,26 +33,26 @@ class student:
       lbl_roll =Label(Manage_frame,text="Roll Number.",font=("time new roman",10,"bold"),bg ="crimson",fg="white")
       lbl_roll.grid(row=1,column=0,pady=20,sticky="w")
 
-      txt_roll=Entry(Manage_frame,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
+      txt_roll=Entry(Manage_frame,textvariable=self.roll_no_var,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
       txt_roll.grid(row=1,column=1,pady=10,padx=20,sticky="w")
       
 
       lbl_name =Label(Manage_frame,text="Name.",font=("time new roman",10,"bold"),bg ="crimson",fg="white")
       lbl_name.grid(row=2,column=0,pady=20,sticky="w")
 
-      txt_name=Entry(Manage_frame,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
+      txt_name=Entry(Manage_frame,textvariable=self.name_var,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
       txt_name.grid(row=2,column=1,pady=10,padx=20,sticky="w")
 
       lbl_email=Label(Manage_frame,text="Email.",font=("time new roman",10,"bold"),bg ="crimson",fg="white")
       lbl_email.grid(row=3,column=0,pady=20,sticky="w")
 
-      txt_email=Entry(Manage_frame,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
+      txt_email=Entry(Manage_frame,textvariable=self.email_var,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
       txt_email.grid(row=3,column=1,pady=10,padx=20,sticky="w")
 
       lbl_gender=Label(Manage_frame,text="Gender",font=("time new roman",10,"bold"),bg ="crimson",fg="white")
       lbl_gender.grid(row=4,column=0,pady=20,sticky="w")
 
-      combo_gender=ttk.Combobox(Manage_frame,font=("time new roman",13,"bold"),state="readonly")
+      combo_gender=ttk.Combobox(Manage_frame,textvariable=self.gender_var,font=("time new roman",13,"bold"),state="readonly")
       combo_gender["values"]=("male","female","other")
       combo_gender.grid(row=4,column=1,padx=20,pady=10)
 
@@ -60,13 +61,13 @@ class student:
       lbl_contact=Label(Manage_frame,text="Contact.",font=("time new roman",10,"bold"),bg ="crimson",fg="white")
       lbl_contact.grid(row=5,column=0,pady=20,sticky="w")
 
-      txt_contact=Entry(Manage_frame,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
+      txt_contact=Entry(Manage_frame,textvariable=self.contact_var,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
       txt_contact.grid(row=5,column=1,pady=10,padx=20,sticky="w")
 
       lbl_DOB=Label(Manage_frame,text="D.O.B.",font=("time new roman",10,"bold"),bg ="crimson",fg="white")
       lbl_DOB.grid(row=6,column=0,pady=20,sticky="w")
 
-      txt_DOB=Entry(Manage_frame,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
+      txt_DOB=Entry(Manage_frame,textvariable=self.dob_var,font=("time new roman",15,"bold"),bd=5,relief=GROOVE)
       txt_DOB.grid(row=6,column=1,pady=10,padx=20,sticky="w")
 
       lbl_address=Label(Manage_frame,text="Address.",font=("time new roman",10,"bold"),bg ="crimson",fg="white")
@@ -128,8 +129,10 @@ class student:
       student_table.column("contact",width=100)
       student_table.column("dob",width=100)
       student_table.column("address",width=150)
-      
       student_table.pack(fill=BOTH,expand=1)
+
+def add_students(self):
+  con = pymysql.connect(host="localhost",user="root",password="",database="stm")
 
 
 root=Tk()
