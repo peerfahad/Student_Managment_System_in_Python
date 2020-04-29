@@ -80,10 +80,10 @@ class student:
       btn_frame=Frame(Manage_frame,bd=4,relief=RIDGE,bg="crimson")
       btn_frame.place(x=10,y=535,width=430)
 
-      addbtn=Button(btn_frame,text="ADD",width=10).grid(row=0,column=0,padx=10,pady=10)
-      addbtn=Button(btn_frame,text="UPDATE",width=10).grid(row=0,column=1,padx=10,pady=10)
-      addbtn=Button(btn_frame,text="DELETE",width=10).grid(row=0,column=2,padx=10,pady=10)
-      addbtn=Button(btn_frame,text="CLEAR",width=10).grid(row=0,column=3,padx=10,pady=10)
+      addbtn=Button(btn_frame,text="ADD",width=10,command=self.add_students).grid(row=0,column=0,padx=10,pady=10)
+      updatebtn=Button(btn_frame,text="UPDATE",width=10).grid(row=0,column=1,padx=10,pady=10)
+      deletebtn=Button(btn_frame,text="DELETE",width=10).grid(row=0,column=2,padx=10,pady=10)
+      clearbtn=Button(btn_frame,text="CLEAR",width=10).grid(row=0,column=3,padx=10,pady=10)
      
       # Detail frame
 
@@ -131,9 +131,21 @@ class student:
       student_table.column("address",width=150)
       student_table.pack(fill=BOTH,expand=1)
 
-def add_students(self):
-  con = pymysql.connect(host="localhost",user="root",password="",database="stm")
-
+    def add_students(self):
+        con = pymysql.connect(database="stm",host="localhost",user="root",password="root")
+        cur=con.cursor()
+        cur.execute("insert into students values(%s,%s,%s,%s,%s,%s,%s)",(self.roll_no_var.get(),
+                                                                  self.name_var.get(),
+                                                                  self.email_var.get(),
+                                                                  self.gender_var.get(),
+                                                                  self.contact_var.get(),
+                                                                  self.dob_var.get(),
+                                                                  self.address.get('1.0',END)
+                                                                   ))
+        con.commit()
+        con.close()
+      
+   
 
 root=Tk()
 ob=student(root)
